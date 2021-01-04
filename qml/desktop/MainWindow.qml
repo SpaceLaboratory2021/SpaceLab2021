@@ -35,7 +35,9 @@ Rectangle {
             }
             height: parent.height*0.5
 
-            /* Insert your code here */
+            LightControl {
+                id: lightControl
+            }
         }
         Item {
             id: movementSection

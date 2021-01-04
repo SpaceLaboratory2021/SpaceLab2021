@@ -7,6 +7,10 @@ Window {
         /* for future use */
     }
 
+    MainWindow {
+        id: mainWindow
+    }
+
     visible: true
     width: 640
     height: 480
