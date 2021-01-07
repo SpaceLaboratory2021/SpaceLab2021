@@ -4,5 +4,6 @@
         <file>IconButton.qml</file>
         <file>MainWindow.qml</file>
         <file>UniversalButton.qml</file>
+        <file>LightControl.qml</file>
     </qresource>
 </RCC>
