@@ -24,5 +24,7 @@
         <file>icons/save.png</file>
         <file>icons/square_shape.png</file>
         <file>UniversalSlider.qml</file>
+        <file>VideoPreviewTab.qml</file>
+        <file>images/tab.png</file>
     </qresource>
 </RCC>
