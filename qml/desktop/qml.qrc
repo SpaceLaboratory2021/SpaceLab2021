@@ -23,5 +23,6 @@
         <file>icons/round.png</file>
         <file>icons/save.png</file>
         <file>icons/square_shape.png</file>
+        <file>UniversalSlider.qml</file>
     </qresource>
 </RCC>
