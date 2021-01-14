@@ -34,7 +34,7 @@ Rectangle {
             videoPreview.stop()
             break
         case 3: // folder open button
-            videoPreview.capture()
+            fixedCameraPreview.capture()
             break
         }
     }

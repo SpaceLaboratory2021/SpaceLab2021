@@ -12,7 +12,9 @@ Window {
     }
 
     visible: true
-    width: 640
-    height: 480
+    width: minimumWidth
+    height: minimumHeight
+    minimumWidth: 886
+    minimumHeight: 480
     title: qsTr("SpaceLab")
 }

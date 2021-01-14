@@ -26,33 +26,28 @@ Rectangle {
         }
     }
 
-    Rectangle {
-        id: previewControl
-        height: 50
-        anchors {
-            top: headerField.bottom
-            right: parent.right
-            left: parent.left
-        }
-        color: "yellow"
-
-        VideoSwitch {
-            anchors.fill: parent
-        }
-    }
-
-    Rectangle {
+    VideoPreviewTab {
         id: cameraPreview
         anchors {
-            top: previewControl.bottom
+            top: headerField.bottom
             right: parent.right
             left: parent.left
             bottom: recordContol.top
         }
         color: "#212121"
 
+
         VideoPreview {
-            id: videoPreview
+            property string title: "Подвижная камера"
+
+            id: movingCameraPreview
+            anchors.fill: parent
+        }
+
+        VideoPreview {
+            property string title: "Стационарная камера"
+
+            id: fixedCameraPreview
             anchors.fill: parent
         }
     }
