@@ -5,5 +5,23 @@
         <file>MainWindow.qml</file>
         <file>UniversalButton.qml</file>
         <file>LightControl.qml</file>
+        <file>VideoControl.qml</file>
+        <file>VideoControllerPanel.qml</file>
+        <file>VideoPreview.qml</file>
+        <file>VideoSwitch.qml</file>
+        <file>icons/arrow_bottom.png</file>
+        <file>icons/arrow_clockwise.png</file>
+        <file>icons/arrow_counterclockwise.png</file>
+        <file>icons/arrow_left.png</file>
+        <file>icons/arrow_right.png</file>
+        <file>icons/arrow_top.png</file>
+        <file>icons/folder_open.png</file>
+        <file>icons/photo.png</file>
+        <file>icons/playback_play.png</file>
+        <file>icons/playback_rec.png</file>
+        <file>icons/playback_stop.png</file>
+        <file>icons/round.png</file>
+        <file>icons/save.png</file>
+        <file>icons/square_shape.png</file>
     </qresource>
 </RCC>

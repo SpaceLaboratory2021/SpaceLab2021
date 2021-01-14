@@ -4,7 +4,6 @@ Rectangle {
     property alias text: windowsText.text
     property alias fontSize: windowsText.font.pixelSize
     property alias textTopMargin: windowsText.anchors.topMargin
-    anchors.fill: parent
     radius: 50
     color: "yellow"
 

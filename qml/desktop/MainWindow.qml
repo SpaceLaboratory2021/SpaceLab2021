@@ -1,8 +1,9 @@
 import QtQuick 2.12
-import QtQuick.Controls 2.15
+import QtQuick.Controls 2.12
 
 Rectangle {
     anchors.fill: parent
+    color: "black"
 
     Item {
         id: settingsSection
@@ -19,26 +20,23 @@ Rectangle {
             bottom: parent.bottom
         }
         width: parent.width
-        Item {
+
+        VideoControl {
             id: cameraSection
             height: parent.height
-            width: parent.width*0.5
-
-            /* Insert your code here */
+            width: parent.width * 0.5
         }
-        Item {
+
+        LightControl {
             id: lightSection
             anchors {
                 left: cameraSection.right
                 right: mainSection.right
                 top: parent.top
             }
-            height: parent.height*0.5
-
-            LightControl {
-                id: lightControl
-            }
+            height: parent.height * 0.5
         }
+
         Item {
             id: movementSection
             anchors {
