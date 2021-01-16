@@ -2,15 +2,14 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 
 Rectangle {
+    id: root
     anchors.fill: parent
     color: "black"
 
-    Item {
+    UniversalMenuBar {
         id: settingsSection
-        height: 20
         width: parent.width
-
-        /* Insert your code here */
+        colorBackground: root.color
     }
 
     Item {
