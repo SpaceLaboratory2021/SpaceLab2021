@@ -8,7 +8,6 @@
         <file>VideoControl.qml</file>
         <file>VideoControllerPanel.qml</file>
         <file>VideoPreview.qml</file>
-        <file>VideoSwitch.qml</file>
         <file>icons/arrow_bottom.png</file>
         <file>icons/arrow_clockwise.png</file>
         <file>icons/arrow_counterclockwise.png</file>
@@ -26,5 +25,7 @@
         <file>UniversalSlider.qml</file>
         <file>VideoPreviewTab.qml</file>
         <file>images/tab.png</file>
+        <file>UniversalMenuBar.qml</file>
+        <file>UniversalMenuItem.qml</file>
     </qresource>
 </RCC>
