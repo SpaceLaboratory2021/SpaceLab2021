@@ -24,6 +24,7 @@ Rectangle {
             id: cameraSection
             height: parent.height
             width: parent.width * 0.5
+            z: 1
         }
 
         LightControl {
