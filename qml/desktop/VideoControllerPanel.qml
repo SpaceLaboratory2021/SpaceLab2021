@@ -3,7 +3,7 @@ import QtQuick 2.12
 Rectangle {
     id: root
     property string backgroundColor: "#212121"
-    property var icons: ["qrc:/icons/save.png", "qrc:/icons/round.png",
+    property var icons: ["qrc:/icons/fullScreen.png", "qrc:/icons/round.png",
         "qrc:/icons/square_shape.png", "qrc:/icons/photo.png"]
 
     color: "transparent"
@@ -25,15 +25,16 @@ Rectangle {
 
     function executeButtonEvent(index) {
         switch (index) {
-        case 0: // play button
+        case 0: // full screen mode button
+            fixedCameraPreview.fullScreen()
             break
         case 1: // record button
-            videoPreview.record()
+            fixedCameraPreview.record()
             break
         case 2: // stop button
-            videoPreview.stop()
+            fixedCameraPreview.stop()
             break
-        case 3: // folder open button
+        case 3: // capture button
             fixedCameraPreview.capture()
             break
         }

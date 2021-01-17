@@ -35,7 +35,7 @@ Rectangle {
             bottom: recordContol.top
         }
         color: "#212121"
-
+        z: 1
 
         VideoPreview {
             property string title: "Подвижная камера"

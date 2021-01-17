@@ -1,5 +1,6 @@
 import QtQuick 2.12
 import QtMultimedia 5.14
+import QtQuick.Window 2.14
 
 Item {
     id: videoPreview
@@ -23,14 +24,25 @@ Item {
         }
     }
 
-    VideoOutput {
-        id: viewfinder
-        visible: true
-        anchors.centerIn: parent.Center
-        width: parent.width
-        height: parent.height
-        source: camera
-        focus: visible
+    Rectangle {
+        id: background
+        anchors.fill: parent
+        color: "#212121"
+
+        VideoOutput {
+            id: viewfinder
+            visible: true
+            anchors.centerIn: parent.Center
+            width: parent.width
+            height: parent.height
+            source: camera
+            focus: visible
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onDoubleClicked: fullScreen()
+        }
     }
 
     Image {
@@ -38,6 +50,10 @@ Item {
         anchors.fill: parent
         fillMode: Image.PreserveAspectFit
         visible: false
+    }
+
+    function fullScreen() {
+        background.parent = (background.parent == videoPreview) ? root : videoPreview
     }
 
     function record() {

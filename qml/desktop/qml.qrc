@@ -20,12 +20,12 @@
         <file>icons/playback_rec.png</file>
         <file>icons/playback_stop.png</file>
         <file>icons/round.png</file>
-        <file>icons/save.png</file>
         <file>icons/square_shape.png</file>
         <file>UniversalSlider.qml</file>
         <file>VideoPreviewTab.qml</file>
         <file>images/tab.png</file>
         <file>UniversalMenuBar.qml</file>
         <file>UniversalMenuItem.qml</file>
+        <file>icons/fullScreen.png</file>
     </qresource>
 </RCC>
