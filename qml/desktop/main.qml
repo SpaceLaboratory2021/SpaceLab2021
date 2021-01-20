@@ -2,19 +2,14 @@ import QtQuick 2.12
 import QtQuick.Window 2.14
 
 Window {
-    QtObject {
-        id: constants
-        /* for future use */
-    }
+    visible: true
+    width: minimumWidth
+    height: minimumHeight
+    minimumWidth: 835
+    minimumHeight: 480
+    title: qsTr("SpaceLab")
 
     MainWindow {
         id: mainWindow
     }
-
-    visible: true
-    width: minimumWidth
-    height: minimumHeight
-    minimumWidth: 886
-    minimumHeight: 480
-    title: qsTr("SpaceLab")
 }

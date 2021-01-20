@@ -28,19 +28,28 @@ Item {
         id: background
         anchors.fill: parent
         color: "#212121"
+        radius: 10
 
         VideoOutput {
             id: viewfinder
             visible: true
             anchors.centerIn: parent.Center
-            width: parent.width
-            height: parent.height
+            anchors {
+                top: parent.top
+                topMargin: 5
+                left: parent.left
+                leftMargin: anchors.topMargin
+                right: parent.right
+                rightMargin: anchors.topMargin
+                bottom: parent.bottom
+                bottomMargin: anchors.topMargin
+            }
             source: camera
             focus: visible
         }
 
         MouseArea {
-            anchors.fill: parent
+            anchors.fill: viewfinder
             onDoubleClicked: fullScreen()
         }
     }

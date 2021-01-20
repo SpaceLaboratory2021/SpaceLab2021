@@ -16,22 +16,14 @@ Rectangle {
                 id: delegate
                 width: videoPreviewTab.width / storage.children.length
                 height: 36
-
-                Rectangle {
-                    width: parent.width; height: 1
-                    anchors {
-                        bottom: parent.bottom
-                        bottomMargin: 1
-                    }
-                    color: "#acb2c2"
-                }
+                color: "#101010"
 
                 BorderImage {
                     anchors {
                         fill: parent
-                        leftMargin: 2
+                        leftMargin: 10
                         topMargin: 5
-                        rightMargin: 1
+                        rightMargin: 10
                     }
                     border {
                         left: 7
@@ -52,7 +44,7 @@ Rectangle {
                         pixelSize: 13
                         bold: videoPreviewTab.current == index
                     }
-                    color: font.bold === true ? "white" : "black"
+                    color: "white"
                 }
 
                 MouseArea {
