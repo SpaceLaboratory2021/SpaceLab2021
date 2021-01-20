@@ -2,21 +2,21 @@ import QtQuick 2.12
 
 Rectangle {
     id: root
-    property string backgroundColor: "#212121"
+    property string backgroundColor: "transparent"
     property var icons: ["qrc:/icons/fullScreen.png", "qrc:/icons/round.png",
         "qrc:/icons/square_shape.png", "qrc:/icons/photo.png"]
 
     color: "transparent"
-    width: parent.width
 
     Row {
         width: parent.width
+        spacing: 5
 
         Repeater {
             model: icons
             delegate: IconButton {
                 iconImage: icons[model.index]
-                width: parent.width / icons.length - parent.spacing
+                width: (parent.width - parent.spacing * (icons.length - 1)) / icons.length
                 backgroundColor: root.backgroundColor
                 onClicked: executeButtonEvent(model.index)
             }

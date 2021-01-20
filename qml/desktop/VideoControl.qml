@@ -1,22 +1,25 @@
 import QtQuick 2.12
 
-Rectangle {
-
+Item {
     Rectangle {
-        id: headerField
-        height: 40
+        radius: 10
+        color: "#212121"
+        width: parent.width
         anchors {
             top: parent.top
-            right: parent.right
-            left: parent.left
+            bottom: recordContol.top
+            bottomMargin: 5
         }
 
-        color: "#212121"
-
         Text {
-            anchors.fill: parent
+            id: headerField
+            width: parent.width
+            height: 25
+            anchors {
+                top: parent.top
+                topMargin: 10
+            }
             horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
             text: qsTr("Управление видео")
             color: "white"
             font {
@@ -24,46 +27,44 @@ Rectangle {
                 bold: true
             }
         }
+
+        VideoPreviewTab {
+            id: cameraPreview
+            width: parent.width
+            radius: parent.radius
+            anchors {
+                top: headerField.bottom
+                bottom: parent.bottom
+            }
+            color: "#212121"
+            z: 1
+
+            VideoPreview {
+                property string title: "Подвижная камера"
+
+                id: movingCameraPreview
+                anchors.fill: parent
+            }
+
+            VideoPreview {
+                property string title: "Стационарная камера"
+
+                id: fixedCameraPreview
+                anchors.fill: parent
+            }
+        }
     }
 
-    VideoPreviewTab {
-        id: cameraPreview
-        anchors {
-            top: headerField.bottom
-            right: parent.right
-            left: parent.left
-            bottom: recordContol.top
-        }
-        color: "#212121"
-        z: 1
-
-        VideoPreview {
-            property string title: "Подвижная камера"
-
-            id: movingCameraPreview
-            anchors.fill: parent
-        }
-
-        VideoPreview {
-            property string title: "Стационарная камера"
-
-            id: fixedCameraPreview
-            anchors.fill: parent
-        }
-    }
-
-    Rectangle {
+    VideoControllerPanel {
         id: recordContol
         height: 50
+        width: parent.width
+        radius: 10
+        backgroundColor: "#212121"
         anchors {
             right: parent.right
             left: parent.left
             bottom: parent.bottom
-        }
-
-        VideoControllerPanel {
-            anchors.fill: parent
-            backgroundColor: "#212121"
         }
     }
 }

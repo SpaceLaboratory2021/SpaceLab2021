@@ -4,17 +4,23 @@ Rectangle {
     property alias text: windowsText.text
     property alias fontSize: windowsText.font.pixelSize
     property alias textTopMargin: windowsText.anchors.topMargin
-    radius: 50
-    color: "yellow"
+    radius: 10
+    color: "#212121"
 
     Text {
         id: windowsText
         horizontalAlignment: Text.AlignHCenter
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.topMargin: 20
-        font.pixelSize: 20
+        anchors {
+            horizontalCenter: parent.horizontalCenter
+            left: parent.left
+            top: parent.top
+            topMargin: 10
+        }
+        font {
+            bold: true
+            pixelSize: 15
+        }
         text: qsTr("Управление светом")
+        color: "white"
     }
 }

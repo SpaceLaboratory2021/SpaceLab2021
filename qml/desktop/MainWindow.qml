@@ -12,41 +12,40 @@ Rectangle {
         colorBackground: root.color
     }
 
-    Item {
-        id: mainSection
-        anchors {
-            top: settingsSection.bottom
-            bottom: parent.bottom
-        }
-        width: parent.width
+    Row {
+        id: controlRow
+        spacing: 5
+        height: parent.height - settingsSection.height
+        anchors.top: settingsSection.bottom
+        leftPadding: spacing
+        rightPadding: spacing
+        bottomPadding: spacing
+        topPadding: spacing
 
         VideoControl {
             id: cameraSection
-            height: parent.height
-            width: parent.width * 0.5
+            height: parent.height - parent.spacing * 2
+            width: root.width * 0.5 - controlRow.spacing * 1.5
             z: 1
         }
 
-        LightControl {
-            id: lightSection
-            anchors {
-                left: cameraSection.right
-                right: mainSection.right
-                top: parent.top
-            }
-            height: parent.height * 0.5
-        }
+        Column {
+            id: elementsControl
+            height: parent.height - parent.spacing * 2
+            width: root.width * 0.5 - controlRow.spacing * 1.5
+            spacing: controlRow.spacing
 
-        Item {
-            id: movementSection
-            anchors {
-                left: cameraSection.right
-                right: mainSection.right
-                top: lightSection.bottom
-                bottom: parent.bottom
+            LightControl {
+                id: lightSection
+                width: parent.width
+                height: parent.height / 2 - parent.spacing / 2
             }
 
-            /* Insert your code here */
+            LightControl {
+                id: movementSection
+                width: parent.width
+                height: parent.height / 2 - parent.spacing / 2
+            }
         }
     }
 }

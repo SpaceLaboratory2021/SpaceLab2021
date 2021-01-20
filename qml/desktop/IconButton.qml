@@ -14,6 +14,7 @@ MouseArea {
     Rectangle {
         id: background
         anchors.fill: parent
+        radius: 10
     }
 
     Image {
