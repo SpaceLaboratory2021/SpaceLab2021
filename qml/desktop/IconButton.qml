@@ -4,8 +4,10 @@ MouseArea {
     id: root
 
     property var iconImage
+    property var iconRotation
     property alias backgroundColor: background.color
     property int keyCode
+    property bool reverseOpacity: false
 
     focus: true
     width: 100
@@ -15,13 +17,17 @@ MouseArea {
         id: background
         anchors.fill: parent
         radius: 10
+        opacity: reverseOpacity ? 0 : 1
     }
 
     Image {
         id: icon
         anchors.centerIn: parent
+        width: parent.width
+        height: parent.height
         fillMode: Image.PreserveAspectFit
         source: iconImage
+        rotation: iconRotation
     }
 
     Keys.onPressed: {
@@ -32,7 +38,7 @@ MouseArea {
 
     Keys.onReleased: {
         if (event.key === keyCode){
-            background.opacity = 1;
+            background.opacity = reverseOpacity ? 0 : 1;
         }
     }
 
@@ -41,6 +47,6 @@ MouseArea {
     }
 
     onReleased: {
-        background.opacity = 1;
+        background.opacity = reverseOpacity ? 0 : 1;
     }
 }

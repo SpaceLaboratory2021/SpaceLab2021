@@ -41,8 +41,8 @@ Rectangle {
                 height: parent.height / 2 - parent.spacing / 2
             }
 
-            LightControl {
-                id: movementSection
+            CameraControl {
+                id: cameraControl
                 width: parent.width
                 height: parent.height / 2 - parent.spacing / 2
             }

@@ -27,5 +27,7 @@
         <file>UniversalMenuBar.qml</file>
         <file>UniversalMenuItem.qml</file>
         <file>icons/fullScreen.png</file>
+        <file>CameraControl.qml</file>
+        <file>icons/arrow.svg</file>
     </qresource>
 </RCC>
