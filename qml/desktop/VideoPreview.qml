@@ -5,6 +5,8 @@ import QtQuick.Window 2.14
 Item {
     id: videoPreview
 
+    property var fixed: false
+
     Camera {
         id: camera
         captureMode: Camera.CaptureStillImage
@@ -22,6 +24,7 @@ Item {
             audioBitRate: 128000
             mediaContainer: "mp4"
         }
+        deviceId: fixed ? globals.cameraIdFixed : globals.cameraId
     }
 
     Rectangle {

@@ -9,6 +9,12 @@ Window {
     minimumHeight: 480
     title: qsTr("SpaceLab")
 
+    QtObject {
+        id: globals
+        property string cameraId
+        property string cameraIdFixed
+    }
+
     MainWindow {
         id: mainWindow
     }
