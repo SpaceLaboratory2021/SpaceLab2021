@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Dialogs 1.2
+import QtMultimedia 5.14
 
 MenuBar {
     property string colorBackground: rectBackground.color
@@ -64,16 +65,29 @@ MenuBar {
             width: itemWidth
         }
 
-        Action {
-            id: movableCameraDevice
-            text: "Подвижная камера"
-            onTriggered: console.log("movableCameraDevice")
+        Menu {
+            title: "Подвижная камера"
+            Repeater {
+                model: QtMultimedia.availableCameras
+                CameraListButton {
+                    width: parent.width
+                    cameraName: modelData.displayName
+                    cameraIndex: modelData.deviceId
+                }
+            }
         }
 
-        Action {
-            id: fixedCameraDevice
-            text: "Стационарная камера"
-            onTriggered: console.log("fixedCameraDevice")
+        Menu {
+            title: "Стационарная камера"
+            Repeater {
+                model: QtMultimedia.availableCameras
+                CameraListButton {
+                    width: parent.width
+                    cameraName: modelData.displayName
+                    cameraIndex: modelData.deviceId
+                    fixed: true
+                }
+            }
         }
     }
 

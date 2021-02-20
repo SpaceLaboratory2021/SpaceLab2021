@@ -50,6 +50,7 @@ Item {
                 property string title: "Стационарная камера"
 
                 id: fixedCameraPreview
+                fixed: true
                 anchors.fill: parent
             }
         }

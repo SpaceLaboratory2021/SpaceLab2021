@@ -29,5 +29,6 @@
         <file>icons/fullScreen.png</file>
         <file>CameraControl.qml</file>
         <file>icons/arrow.svg</file>
+        <file>CameraListButton.qml</file>
     </qresource>
 </RCC>
