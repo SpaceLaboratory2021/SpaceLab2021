@@ -10,6 +10,27 @@ Rectangle {
     radius: 10
     color: "#212121"
 
+    function sendData(moveStr) {
+        var http = new XMLHttpRequest()
+        var url = "http://192.168.0.120:5000/move";
+        var params = "move=" + moveStr;
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.setRequestHeader("Content-length", params.length);
+        http.setRequestHeader("Connection", "close");
+
+        http.onreadystatechange = function() {
+                    if (http.readyState == 4) {
+                        if (http.status == 200) {
+                            console.log("ok")
+                        } else {
+                            console.log("error: " + http.status)
+                        }
+                    }
+                }
+        http.send(params);
+    }
+
     Text {
         id: windowsText
         horizontalAlignment: Text.AlignHCenter
@@ -38,6 +59,11 @@ Rectangle {
         backgroundColor: root.backgroundColor
         iconRotation: 180
         reverseOpacity: true
+
+        Connections {
+            target: iconButtonLeft
+            onClicked: sendData("-x")
+        }
     }
 
     IconButton {
@@ -50,6 +76,11 @@ Rectangle {
         backgroundColor: root.backgroundColor
         iconRotation: 270
         reverseOpacity: true
+
+        Connections {
+            target: iconButtonUp
+            onClicked: sendData("+y")
+        }
     }
 
     IconButton {
@@ -62,6 +93,11 @@ Rectangle {
         backgroundColor: root.backgroundColor
         iconRotation: 0
         reverseOpacity: true
+
+        Connections {
+            target: iconButtonRight
+            onClicked: sendData("+x")
+        }
     }
 
     IconButton {
@@ -74,6 +110,11 @@ Rectangle {
         backgroundColor: root.backgroundColor
         iconRotation: 90
         reverseOpacity: true
+
+        Connections {
+            target: iconButtonDown
+            onClicked: sendData("-y")
+        }
     }
 
     IconButton {
@@ -87,6 +128,11 @@ Rectangle {
         backgroundColor: root.backgroundColor
         iconRotation: 270
         reverseOpacity: true
+
+        Connections {
+            target: iconButtonZUp
+            onClicked: sendData("+z")
+        }
     }
 
     IconButton {
@@ -99,5 +145,10 @@ Rectangle {
         backgroundColor: root.backgroundColor
         iconRotation: 90
         reverseOpacity: true
+
+        Connections {
+            target: iconButtonZDown
+            onClicked: sendData("-z")
+        }
     }
 }

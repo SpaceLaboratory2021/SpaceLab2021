@@ -6,7 +6,28 @@ Rectangle {
     property alias text: windowText.text
     property alias fontSize: windowText.font.pixelSize
     radius: 10
-    color: "#212121"    
+    color: "#212121"
+
+    function sendData(color) {
+        var http = new XMLHttpRequest()
+        var url = "http://192.168.0.120:5000/led";
+        var params = "color=" + color;
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.setRequestHeader("Content-length", params.length);
+        http.setRequestHeader("Connection", "close");
+
+        http.onreadystatechange = function() {
+                    if (http.readyState == 4) {
+                        if (http.status == 200) {
+                            console.log("ok")
+                        } else {
+                            console.log("error: " + http.status)
+                        }
+                    }
+                }
+        http.send(params);
+    }
 
     Text {
         id: windowText
@@ -43,30 +64,15 @@ Rectangle {
         Connections {
             target: slider
             onStateChanged1: {
-                var http = new XMLHttpRequest()
-                var url = "http://192.168.0.120:5000/led";
-                var params = "color=" + colorpicker.colorValue;
-                http.open("POST", url, true);
-                http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                http.setRequestHeader("Content-length", params.length);
-                http.setRequestHeader("Connection", "close");
+                var params = ""
                 if (slider.state == "RightState") {
                     blocker.color = "#F0808080"
-                    params = "color=#000000";
+                    params = "#000000";
                 } else {
                     blocker.color = "transparent"
-                    params = "color=" + colorpicker.colorValue;
+                    params = colorpicker.colorValue;
                 }
-                http.onreadystatechange = function() {
-                            if (http.readyState == 4) {
-                                if (http.status == 200) {
-                                    console.log("ok")
-                                } else {
-                                    console.log("error: " + http.status)
-                                }
-                            }
-                        }
-                http.send(params);
+                sendData(params)
             }
         }
 
@@ -84,25 +90,7 @@ Rectangle {
             target: button
             onClicked: {
                 if (slider.state == "RightState") {
-                    console.log(colorpicker.colorValue);
-                    var http = new XMLHttpRequest()
-                    var url = "http://192.168.0.120:5000/led";
-                    var params = "color=" + colorpicker.colorValue;
-                    http.open("POST", url, true);
-                    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                    http.setRequestHeader("Content-length", params.length);
-                    http.setRequestHeader("Connection", "close");
-
-                    http.onreadystatechange = function() {
-                                if (http.readyState == 4) {
-                                    if (http.status == 200) {
-                                        console.log("ok")
-                                    } else {
-                                        console.log("error: " + http.status)
-                                    }
-                                }
-                            }
-                    http.send(params);
+                    sendData(colorpicker.colorValue)
                 }
             }
         }
