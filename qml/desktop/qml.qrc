@@ -30,5 +30,13 @@
         <file>CameraControl.qml</file>
         <file>icons/arrow.svg</file>
         <file>CameraListButton.qml</file>
+	<file>content/Checkerboard.qml</file>
+        <file>content/ColorSlider.qml</file>
+        <file>content/NumberBox.qml</file>
+        <file>content/PanelBorder.qml</file>
+        <file>content/SBPicker.qml</file>
+        <file>Colorpicker.qml</file>
+        <file>content/Palette.qml</file>
+        <file>content/Palettes.qml</file>
     </qresource>
 </RCC>
