@@ -20,7 +20,7 @@ Item {
                 topMargin: 10
             }
             horizontalAlignment: Text.AlignHCenter
-            text: qsTr("Управление видео")
+            text: qsTr("Управление установкой")
             color: "white"
             font {
                 pixelSize: 15

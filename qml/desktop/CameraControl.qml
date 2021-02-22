@@ -1,16 +1,19 @@
 import QtQuick 2.0
+import QtQuick.Layouts 1.15
+
 
 Rectangle {
     id: root
-    property alias text: windowsText.text
-    property alias fontSize: windowsText.font.pixelSize
-    property alias textTopMargin: windowsText.anchors.topMargin
+    property alias text: windowText.text
+    property alias fontSize: windowText.font.pixelSize
+    property alias textTopMargin: windowText.anchors.topMargin
     property string backgroundColor: "#0F0F0F"
     property int iconSize: 50
     radius: 10
     color: "#212121"
 
     function sendData(moveStr) {
+        console.log(moveStr);
         var http = new XMLHttpRequest()
         var url = "http://192.168.0.120:5000/move";
         var params = "move=" + moveStr;
@@ -32,7 +35,7 @@ Rectangle {
     }
 
     Text {
-        id: windowsText
+        id: windowText
         horizontalAlignment: Text.AlignHCenter
         anchors {
             horizontalCenter: parent.horizontalCenter
@@ -48,107 +51,302 @@ Rectangle {
         color: "white"
     }
 
-    IconButton {
-        id: iconButtonLeft
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.left: parent.left
-        anchors.leftMargin: parent.width*0.15
-        width: iconSize
-        height: iconSize
-        iconImage: "qrc:/icons/arrow.svg"
-        backgroundColor: root.backgroundColor
-        iconRotation: 180
-        reverseOpacity: true
-
-        Connections {
-            target: iconButtonLeft
-            onClicked: sendData("-x")
+    GridLayout {
+        id: buttons
+        anchors {
+            top: windowText.bottom
+            topMargin: 15
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
         }
-    }
 
-    IconButton {
-        id: iconButtonUp
-        anchors.left: iconButtonLeft.right
-        anchors.bottom: iconButtonLeft.top
-        width: iconSize
-        height: iconSize
-        iconImage: "qrc:/icons/arrow.svg"
-        backgroundColor: root.backgroundColor
-        iconRotation: 270
-        reverseOpacity: true
+        rows: 2
+        columns: 2
 
-        Connections {
-            target: iconButtonUp
-            onClicked: sendData("+y")
+        Item {
+            id: yaw
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Text {
+                id: yawText
+                horizontalAlignment: Text.AlignHCenter
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                    top: parent.top
+                }
+                font {
+                    bold: true
+                    pixelSize: 12
+                }
+                text: qsTr("Рыскание")
+                color: "white"
+            }
+            Item {
+                anchors {
+                    top: yawText.bottom
+                    left: parent.left
+                    right: parent.right
+                    bottom: parent.bottom
+                }
+                IconButton {
+                    id: addYaw
+
+                    anchors {
+                        left: parent.horizontalCenter
+                        leftMargin: parent.width*0.1
+
+                    }
+
+                    width: iconSize * rootWindow.width / rootWindow.minimumWidth
+                    height: iconSize * rootWindow.height / rootWindow.minimumHeight
+                    iconImage: "qrc:/icons/arrow.svg"
+                    backgroundColor: root.backgroundColor
+                    iconRotation: 0
+                    reverseOpacity: true
+
+                    Connections {
+                        target: iconButtonLeft
+                        onClicked: sendData("+yaw")
+                    }
+                }
+
+                IconButton {
+                    id: subYaw
+
+                    anchors {
+                        right: parent.horizontalCenter
+                        rightMargin: parent.width*0.1
+
+                    }
+
+                    width: iconSize * rootWindow.width / rootWindow.minimumWidth
+                    height: iconSize * rootWindow.height / rootWindow.minimumHeight
+                    iconImage: "qrc:/icons/arrow.svg"
+                    backgroundColor: root.backgroundColor
+                    iconRotation: 180
+                    reverseOpacity: true
+
+                    Connections {
+                        target: iconButtonLeft
+                        onClicked: sendData("-yaw")
+                    }
+                }
+            }
         }
-    }
 
-    IconButton {
-        id: iconButtonRight
-        anchors.left: iconButtonUp.right
-        anchors.top: iconButtonUp.bottom
-        width: iconSize
-        height: iconSize
-        iconImage: "qrc:/icons/arrow.svg"
-        backgroundColor: root.backgroundColor
-        iconRotation: 0
-        reverseOpacity: true
+        Item {
+            id: cameraPitch
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Text {
+                id: cameraPitchText
+                horizontalAlignment: Text.AlignHCenter
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                    top: parent.top
+                }
+                font {
+                    bold: true
+                    pixelSize: 12
+                }
+                text: qsTr("Тангаж камеры")
+                color: "white"
+            }
+            Item {
+                anchors {
+                    top: cameraPitchText.bottom
+                    left: parent.left
+                    right: parent.right
+                    bottom: parent.bottom
+                }
+                IconButton {
+                    id: addcameraPitch
 
-        Connections {
-            target: iconButtonRight
-            onClicked: sendData("+x")
+                    anchors {
+                        left: parent.horizontalCenter
+                        leftMargin: parent.width*0.1
+
+                    }
+
+                    width: iconSize * rootWindow.width / rootWindow.minimumWidth
+                    height: iconSize * rootWindow.height / rootWindow.minimumHeight
+                    iconImage: "qrc:/icons/arrow.svg"
+                    backgroundColor: root.backgroundColor
+                    iconRotation: 270
+                    reverseOpacity: true
+
+                    Connections {
+                        target: iconButtonLeft
+                        onClicked: sendData("+cameraPitch")
+                    }
+                }
+
+                IconButton {
+                    id: subcameraPitch
+
+                    anchors {
+                        right: parent.horizontalCenter
+                        rightMargin: parent.width*0.1
+
+                    }
+
+                    width: iconSize * rootWindow.width / rootWindow.minimumWidth
+                    height: iconSize * rootWindow.height / rootWindow.minimumHeight
+                    iconImage: "qrc:/icons/arrow.svg"
+                    backgroundColor: root.backgroundColor
+                    iconRotation: 90
+                    reverseOpacity: true
+
+                    Connections {
+                        target: iconButtonLeft
+                        onClicked: sendData("-cameraPitch")
+                    }
+                }
+            }
         }
-    }
 
-    IconButton {
-        id: iconButtonDown
-        anchors.left: iconButtonLeft.right
-        anchors.top: iconButtonLeft.bottom
-        width: iconSize
-        height: iconSize
-        iconImage: "qrc:/icons/arrow.svg"
-        backgroundColor: root.backgroundColor
-        iconRotation: 90
-        reverseOpacity: true
 
-        Connections {
-            target: iconButtonDown
-            onClicked: sendData("-y")
+        Item {
+            id: pitch1
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Text {
+                id: pitch1Text
+                horizontalAlignment: Text.AlignHCenter
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                    top: parent.top
+                }
+                font {
+                    bold: true
+                    pixelSize: 12
+                }
+                text: qsTr("Тангаж 1")
+                color: "white"
+            }
+            Item {
+                anchors {
+                    top: pitch1Text.bottom
+                    left: parent.left
+                    right: parent.right
+                    bottom: parent.bottom
+                }
+                IconButton {
+                    id: addpitch1
+
+                    anchors {
+                        left: parent.horizontalCenter
+                        leftMargin: parent.width*0.1
+
+                    }
+
+                    width: iconSize * rootWindow.width / rootWindow.minimumWidth
+                    height: iconSize * rootWindow.height / rootWindow.minimumHeight
+                    iconImage: "qrc:/icons/arrow.svg"
+                    backgroundColor: root.backgroundColor
+                    iconRotation: 270
+                    reverseOpacity: true
+
+                    Connections {
+                        target: iconButtonLeft
+                        onClicked: sendData("+pitch1")
+                    }
+                }
+
+                IconButton {
+                    id: subpitch1
+
+                    anchors {
+                        right: parent.horizontalCenter
+                        rightMargin: parent.width*0.1
+
+                    }
+
+                    width: iconSize * rootWindow.width / rootWindow.minimumWidth
+                    height: iconSize * rootWindow.height / rootWindow.minimumHeight
+                    iconImage: "qrc:/icons/arrow.svg"
+                    backgroundColor: root.backgroundColor
+                    iconRotation: 90
+                    reverseOpacity: true
+
+                    Connections {
+                        target: iconButtonLeft
+                        onClicked: sendData("-pitch1")
+                    }
+                }
+            }
         }
-    }
 
-    IconButton {
-        id: iconButtonZUp
-        anchors.bottom: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.rightMargin: parent.width*0.15
-        width: iconSize
-        height: iconSize
-        iconImage: "qrc:/icons/arrow.svg"
-        backgroundColor: root.backgroundColor
-        iconRotation: 270
-        reverseOpacity: true
+        Item {
+            id: pitch2
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Text {
+                id: pitch2Text
+                horizontalAlignment: Text.AlignHCenter
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                    top: parent.top
+                }
+                font {
+                    bold: true
+                    pixelSize: 12
+                }
+                text: qsTr("Тангаж 2")
+                color: "white"
+            }
+            Item {
+                anchors {
+                    top: pitch2Text.bottom
+                    left: parent.left
+                    right: parent.right
+                    bottom: parent.bottom
+                }
+                IconButton {
+                    id: addpitch2
 
-        Connections {
-            target: iconButtonZUp
-            onClicked: sendData("+z")
-        }
-    }
+                    anchors {
+                        left: parent.horizontalCenter
+                        leftMargin: parent.width*0.1
 
-    IconButton {
-        id: iconButtonZDown
-        anchors.horizontalCenter: iconButtonZUp.horizontalCenter
-        anchors.top: iconButtonZUp.bottom
-        width: iconSize
-        height: iconSize
-        iconImage: "qrc:/icons/arrow.svg"
-        backgroundColor: root.backgroundColor
-        iconRotation: 90
-        reverseOpacity: true
+                    }
 
-        Connections {
-            target: iconButtonZDown
-            onClicked: sendData("-z")
+                    width: iconSize * rootWindow.width / rootWindow.minimumWidth
+                    height: iconSize * rootWindow.height / rootWindow.minimumHeight
+                    iconImage: "qrc:/icons/arrow.svg"
+                    backgroundColor: root.backgroundColor
+                    iconRotation: 270
+                    reverseOpacity: true
+
+                    Connections {
+                        target: iconButtonLeft
+                        onClicked: sendData("+pitch2")
+                    }
+                }
+
+                IconButton {
+                    id: subpitch2
+
+                    anchors {
+                        right: parent.horizontalCenter
+                        rightMargin: parent.width*0.1
+
+                    }
+
+                    width: iconSize * rootWindow.width / rootWindow.minimumWidth
+                    height: iconSize * rootWindow.height / rootWindow.minimumHeight
+                    iconImage: "qrc:/icons/arrow.svg"
+                    backgroundColor: root.backgroundColor
+                    iconRotation: 90
+                    reverseOpacity: true
+
+                    Connections {
+                        target: iconButtonLeft
+                        onClicked: sendData("-pitch2")
+                    }
+                }
+            }
         }
     }
 }
