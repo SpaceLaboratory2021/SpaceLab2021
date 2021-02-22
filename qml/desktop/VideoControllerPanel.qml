@@ -1,7 +1,7 @@
 import QtQuick 2.12
 
 Rectangle {
-    id: root
+    id: rootVideo
     property string backgroundColor: "transparent"
     property var icons: ["qrc:/icons/fullScreen.png", "qrc:/icons/round.png",
         "qrc:/icons/square_shape.png", "qrc:/icons/photo.png"]
@@ -17,7 +17,7 @@ Rectangle {
             delegate: IconButton {
                 iconImage: icons[model.index]
                 width: (parent.width - parent.spacing * (icons.length - 1)) / icons.length
-                backgroundColor: root.backgroundColor
+                backgroundColor: rootVideo.backgroundColor
                 onClicked: executeButtonEvent(model.index)
             }
         }
