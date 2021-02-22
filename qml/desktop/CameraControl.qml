@@ -106,7 +106,7 @@ Rectangle {
                     reverseOpacity: true
 
                     Connections {
-                        target: iconButtonLeft
+                        target: addYaw
                         onClicked: sendData("+yaw")
                     }
                 }
@@ -128,7 +128,7 @@ Rectangle {
                     reverseOpacity: true
 
                     Connections {
-                        target: iconButtonLeft
+                        target: subYaw
                         onClicked: sendData("-yaw")
                     }
                 }
@@ -177,7 +177,7 @@ Rectangle {
                     reverseOpacity: true
 
                     Connections {
-                        target: iconButtonLeft
+                        target: addcameraPitch
                         onClicked: sendData("+cameraPitch")
                     }
                 }
@@ -199,7 +199,7 @@ Rectangle {
                     reverseOpacity: true
 
                     Connections {
-                        target: iconButtonLeft
+                        target: subcameraPitch
                         onClicked: sendData("-cameraPitch")
                     }
                 }
@@ -249,7 +249,7 @@ Rectangle {
                     reverseOpacity: true
 
                     Connections {
-                        target: iconButtonLeft
+                        target: addpitch1
                         onClicked: sendData("+pitch1")
                     }
                 }
@@ -271,7 +271,7 @@ Rectangle {
                     reverseOpacity: true
 
                     Connections {
-                        target: iconButtonLeft
+                        target: subpitch1
                         onClicked: sendData("-pitch1")
                     }
                 }
@@ -320,7 +320,7 @@ Rectangle {
                     reverseOpacity: true
 
                     Connections {
-                        target: iconButtonLeft
+                        target: addpitch2
                         onClicked: sendData("+pitch2")
                     }
                 }
@@ -342,7 +342,7 @@ Rectangle {
                     reverseOpacity: true
 
                     Connections {
-                        target: iconButtonLeft
+                        target: subpitch2
                         onClicked: sendData("-pitch2")
                     }
                 }

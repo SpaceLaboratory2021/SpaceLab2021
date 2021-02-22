@@ -14,6 +14,7 @@ Window {
         id: globals
         property string cameraId
         property string cameraIdFixed
+        property int currentActiveCamera: 0
     }
 
     MainWindow {

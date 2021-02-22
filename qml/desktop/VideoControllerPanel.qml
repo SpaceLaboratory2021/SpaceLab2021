@@ -26,16 +26,32 @@ Rectangle {
     function executeButtonEvent(index) {
         switch (index) {
         case 0: // full screen mode button
-            fixedCameraPreview.fullScreen()
+            if (globals.currentActiveCamera) {
+                fixedCameraPreview.fullScreen()
+            } else {
+                movingCameraPreview.fullScreen()
+            }
             break
         case 1: // record button
-            fixedCameraPreview.record()
+            if (globals.currentActiveCamera) {
+                fixedCameraPreview.record()
+            } else {
+                movingCameraPreview.record()
+            }
             break
         case 2: // stop button
-            fixedCameraPreview.stop()
+            if (globals.currentActiveCamera) {
+                fixedCameraPreview.stop()
+            } else {
+                movingCameraPreview.stop()
+            }
             break
         case 3: // capture button
-            fixedCameraPreview.capture()
+            if (globals.currentActiveCamera) {
+                fixedCameraPreview.capture()
+            } else {
+                movingCameraPreview.capture()
+            }
             break
         }
     }
