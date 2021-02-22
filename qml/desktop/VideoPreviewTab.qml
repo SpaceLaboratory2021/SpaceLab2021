@@ -49,7 +49,10 @@ Rectangle {
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: videoPreviewTab.current = index
+                    onClicked: {
+                        videoPreviewTab.current = index
+                        globals.currentActiveCamera = index
+                    }
                 }
             }
         }
