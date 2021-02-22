@@ -53,7 +53,13 @@ Item {
 
         MouseArea {
             anchors.fill: viewfinder
-            onDoubleClicked: fullScreen()
+            onDoubleClicked: {
+                if (globals.currentActiveCamera) {
+                    fixedCameraPreview.fullScreen()
+                } else {
+                    movingCameraPreview.fullScreen()
+                }
+            }
         }
     }
 
