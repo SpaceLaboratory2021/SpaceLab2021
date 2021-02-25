@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.15
-
+import QtQuick.Dialogs 1.2
+import QtQuick.Controls 2.12
 
 Rectangle {
     id: root
@@ -12,26 +13,49 @@ Rectangle {
     radius: 10
     color: "#212121"
 
-    function sendData(moveStr) {
-        console.log(moveStr);
-        var http = new XMLHttpRequest()
-        var url = "http://192.168.0.120:5000/move";
-        var params = "move=" + moveStr;
+    function sendData(params, node = "move") {
+        var http = new XMLHttpRequest();
+        var url = "http://192.168.0.120:5000/" + node;
+        if (node == "move") {
+            url += "/" + stepSelector.currentValue;
+        }
+        console.log(url);
+        console.log(params);
         http.open("POST", url, true);
         http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         http.setRequestHeader("Content-length", params.length);
         http.setRequestHeader("Connection", "close");
 
         http.onreadystatechange = function() {
-                    if (http.readyState == 4) {
+                    if (http.readyState == XMLHttpRequest.DONE) {
                         if (http.status == 200) {
-                            console.log("ok")
+                            console.log("ok");
                         } else {
-                            console.log("error: " + http.status)
+                            console.log("error: " + http.status);
                         }
                     }
                 }
         http.send(params);
+    }
+
+    FileDialog {
+        id: fileDialog
+        title: "Choose a file"
+        nameFilters: [ "Command file (*.dude)", "All files (*)" ]
+        selectedNameFilter: "Command file (*.dude)"
+        onAccepted: {
+            console.log("Accepted: " + fileUrls);
+            var xhr = new XMLHttpRequest;
+            xhr.open("GET", fileUrls);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    var response = xhr.responseText;
+                    sendData(response, "program");
+                }
+            };
+            xhr.send();
+        }
+        onRejected: { console.log("Rejected"); }
     }
 
     Text {
@@ -39,7 +63,6 @@ Rectangle {
         horizontalAlignment: Text.AlignHCenter
         anchors {
             horizontalCenter: parent.horizontalCenter
-            left: parent.left
             top: parent.top
             topMargin: 10
         }
@@ -49,6 +72,21 @@ Rectangle {
         }
         text: qsTr("Управление камерой")
         color: "white"
+    }
+
+    ComboBox {
+        id: stepSelector
+        height: windowText.height
+
+        anchors {
+            top: windowText.top
+            right: parent.right
+            left: windowText.right
+            leftMargin: 30
+            rightMargin: 10
+        }
+
+        model: [ "1", "2", "5", "10", "15", "30", "60"]
     }
 
     GridLayout {
@@ -390,6 +428,53 @@ Rectangle {
                     Connections {
                         target: subpitch2
                         onClicked: sendData("-pitch2")
+                    }
+                }
+            }
+        }
+
+        Item {
+            id: upload
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Text {
+                id: uploadText
+                horizontalAlignment: Text.AlignHCenter
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                    top: parent.top
+                }
+                font {
+                    bold: true
+                    pixelSize: 12
+                }
+                text: qsTr("Загрузить команды")
+                color: "white"
+            }
+            Item {
+                anchors {
+                    top: uploadText.bottom
+                    left: parent.left
+                    right: parent.right
+                    bottom: parent.bottom
+                }
+                IconButton {
+                    id: uploadButton
+
+                    anchors {
+                        horizontalCenter: parent.horizontalCenter
+                        verticalCenter: parent.verticalCenter
+                    }
+
+                    width: iconSize * rootWindow.width / rootWindow.minimumWidth
+                    height: iconSize * rootWindow.height / rootWindow.minimumHeight
+                    iconImage: "qrc:/icons/upload.svg"
+                    backgroundColor: root.backgroundColor
+                    reverseOpacity: true
+
+                    Connections {
+                        target: uploadButton
+                        onClicked: fileDialog.open()
                     }
                 }
             }
