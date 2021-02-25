@@ -39,5 +39,6 @@
         <file>content/Palette.qml</file>
         <file>content/Palettes.qml</file>
         <file>icons/home.svg</file>
+        <file>icons/upload.svg</file>
     </qresource>
 </RCC>
