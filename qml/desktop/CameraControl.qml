@@ -62,7 +62,7 @@ Rectangle {
         }
 
         rows: 2
-        columns: 2
+        columns: 3
 
         Item {
             id: yaw
@@ -95,7 +95,7 @@ Rectangle {
                     anchors {
                         left: parent.horizontalCenter
                         leftMargin: parent.width*0.1
-
+                        verticalCenter: parent.verticalCenter
                     }
 
                     width: iconSize * rootWindow.width / rootWindow.minimumWidth
@@ -117,7 +117,7 @@ Rectangle {
                     anchors {
                         right: parent.horizontalCenter
                         rightMargin: parent.width*0.1
-
+                        verticalCenter: parent.verticalCenter
                     }
 
                     width: iconSize * rootWindow.width / rootWindow.minimumWidth
@@ -166,7 +166,7 @@ Rectangle {
                     anchors {
                         left: parent.horizontalCenter
                         leftMargin: parent.width*0.1
-
+                        verticalCenter: parent.verticalCenter
                     }
 
                     width: iconSize * rootWindow.width / rootWindow.minimumWidth
@@ -188,7 +188,7 @@ Rectangle {
                     anchors {
                         right: parent.horizontalCenter
                         rightMargin: parent.width*0.1
-
+                        verticalCenter: parent.verticalCenter
                     }
 
                     width: iconSize * rootWindow.width / rootWindow.minimumWidth
@@ -206,6 +206,52 @@ Rectangle {
             }
         }
 
+        Item {
+            id: home
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Text {
+                id: homeText
+                horizontalAlignment: Text.AlignHCenter
+                anchors {
+                    horizontalCenter: parent.horizontalCenter
+                    top: parent.top
+                }
+                font {
+                    bold: true
+                    pixelSize: 12
+                }
+                text: qsTr("Домой")
+                color: "white"
+            }
+            Item {
+                anchors {
+                    top: homeText.bottom
+                    left: parent.left
+                    right: parent.right
+                    bottom: parent.bottom
+                }
+                IconButton {
+                    id: homeButton
+
+                    anchors {
+                        horizontalCenter: parent.horizontalCenter
+                        verticalCenter: parent.verticalCenter
+                    }
+
+                    width: iconSize * rootWindow.width / rootWindow.minimumWidth
+                    height: iconSize * rootWindow.height / rootWindow.minimumHeight
+                    iconImage: "qrc:/icons/home.svg"
+                    backgroundColor: root.backgroundColor
+                    reverseOpacity: true
+
+                    Connections {
+                        target: homeButton
+                        onClicked: sendData("home")
+                    }
+                }
+            }
+        }
 
         Item {
             id: pitch1
@@ -238,7 +284,7 @@ Rectangle {
                     anchors {
                         left: parent.horizontalCenter
                         leftMargin: parent.width*0.1
-
+                        verticalCenter: parent.verticalCenter
                     }
 
                     width: iconSize * rootWindow.width / rootWindow.minimumWidth
@@ -260,7 +306,7 @@ Rectangle {
                     anchors {
                         right: parent.horizontalCenter
                         rightMargin: parent.width*0.1
-
+                        verticalCenter: parent.verticalCenter
                     }
 
                     width: iconSize * rootWindow.width / rootWindow.minimumWidth
@@ -309,7 +355,7 @@ Rectangle {
                     anchors {
                         left: parent.horizontalCenter
                         leftMargin: parent.width*0.1
-
+                        verticalCenter: parent.verticalCenter
                     }
 
                     width: iconSize * rootWindow.width / rootWindow.minimumWidth
@@ -331,7 +377,7 @@ Rectangle {
                     anchors {
                         right: parent.horizontalCenter
                         rightMargin: parent.width*0.1
-
+                        verticalCenter: parent.verticalCenter
                     }
 
                     width: iconSize * rootWindow.width / rootWindow.minimumWidth
